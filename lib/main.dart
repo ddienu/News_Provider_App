@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: miTema,
-      title: 'Material App',
+      title: 'News App',
       home: TabsPage()
     );
   }
