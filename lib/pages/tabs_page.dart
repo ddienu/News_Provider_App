@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_provider/services/news_service.dart';
+import 'package:news_app_provider/pages/tab1_page.dart';
 import 'package:provider/provider.dart';
 
 
@@ -54,12 +54,8 @@ class _Paginas extends StatelessWidget {
       controller: navegacionModel.pageControler,
       physics: NeverScrollableScrollPhysics(),
       children: [
-        Container(
-          child: Center(
-            child: Text('Tab 1'),
-          ),
-          color: Colors.red,
-        ),
+        
+        Tab1Page(),
 
         Container(
           child: Center(
