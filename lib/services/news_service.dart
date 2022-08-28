@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:news_app_provider/model/category_model.dart';
 import 'package:news_app_provider/model/news_models.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,6 +12,17 @@ class NewsService with ChangeNotifier{
 
 
   List<Article> headlines = [];
+
+  List<Category> categories = [
+    Category(FontAwesomeIcons.building, 'business'),
+    Category(FontAwesomeIcons.building, 'entertainment'),
+    Category(FontAwesomeIcons.building, 'general'),
+    Category(FontAwesomeIcons.building, 'health'),
+    Category(FontAwesomeIcons.building, 'science'),
+    Category(FontAwesomeIcons.building, 'sports'),
+    Category(FontAwesomeIcons.building, 'technology'),
+  ];
+        
 
   NewsService(){
 

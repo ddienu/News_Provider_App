@@ -17,7 +17,7 @@ class _Tab1PageState extends State<Tab1Page> with AutomaticKeepAliveClientMixin 
     final newsService = Provider.of<NewsService>(context);
 
     return Scaffold(
-      body: ( newsService.headlines.length == 0)
+      body: ( newsService.headlines.isEmpty)
           ? Center(
             child: CircularProgressIndicator(),
           )
