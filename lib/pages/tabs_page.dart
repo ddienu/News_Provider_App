@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_provider/pages/tab1_page.dart';
+import 'package:news_app_provider/pages/tab2_page.dart';
 import 'package:provider/provider.dart';
 
 
@@ -57,12 +58,7 @@ class _Paginas extends StatelessWidget {
         
         Tab1Page(),
 
-        Container(
-          child: Center(
-            child: Text('Tab 2'),
-          ),
-          color: Colors.green,
-        ),
+        Tab2Page(),
       ],
     );
   }

@@ -129,7 +129,7 @@ class _TarjetaBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric( horizontal: 5.0 ),
-      child: Text( (noticia.description != null) ? noticia.description : '', textAlign: TextAlign.justify),
+      child: Text( (noticia.description), textAlign: TextAlign.justify),
     );
   }
 }
