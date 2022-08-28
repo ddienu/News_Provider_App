@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_provider/model/category_model.dart';
 import 'package:news_app_provider/services/news_service.dart';
 import 'package:provider/provider.dart';
 
@@ -32,17 +33,50 @@ class _ListaCategorias extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: categories.length,
       itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Icon(categories[index].icon),
-              SizedBox( height: 5.0),
-              Text(categories[index].name)
-             ],
+
+        final categoryName = categories[index].name;
+
+        return Container(
+          width: 105,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                _CategoryButton(categories[index]),
+                SizedBox( height: 5.0),
+                Text(categoryName[0].toUpperCase()+categoryName.substring(1))
+               ],
+              ),
             ),
-          );
+        );
         },
       );
+  }
+}
+
+class _CategoryButton extends StatelessWidget {
+ 
+  final Category categoria;
+
+  
+  const _CategoryButton(this.categoria);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => print(categoria.name),
+      child: Container(
+        width: 40.0,
+        height: 40.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+        ),
+        child: Icon(
+          categoria.icon,
+          color: Colors.black87,
+          ),
+      ),
+    );
   }
 }

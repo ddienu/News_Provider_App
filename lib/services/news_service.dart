@@ -15,12 +15,12 @@ class NewsService with ChangeNotifier{
 
   List<Category> categories = [
     Category(FontAwesomeIcons.building, 'business'),
-    Category(FontAwesomeIcons.building, 'entertainment'),
-    Category(FontAwesomeIcons.building, 'general'),
-    Category(FontAwesomeIcons.building, 'health'),
-    Category(FontAwesomeIcons.building, 'science'),
-    Category(FontAwesomeIcons.building, 'sports'),
-    Category(FontAwesomeIcons.building, 'technology'),
+    Category(FontAwesomeIcons.tv, 'entertainment'),
+    Category(FontAwesomeIcons.globe, 'general'),
+    Category(FontAwesomeIcons.bookMedical, 'health'),
+    Category(FontAwesomeIcons.flask, 'science'),
+    Category(FontAwesomeIcons.baseball, 'sports'),
+    Category(FontAwesomeIcons.microchip, 'technology'),
   ];
         
 
