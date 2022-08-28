@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:news_app_provider/model/news_models.dart';
 import 'package:news_app_provider/theme/theme.dart';
@@ -41,6 +43,8 @@ class _Noticia extends StatelessWidget {
 
       _TarjetaImagen( noticia ),
 
+      _TarjetaBody ( noticia ),
+
       ],
     );
     
@@ -61,8 +65,10 @@ class _TarjetaTopBar extends StatelessWidget {
       margin: EdgeInsets.only( bottom: 10.0),
       child: Row(
         children: [
-          Text('${index + 1}', style: TextStyle(color: miTema.colorScheme.secondary)),
-          Text(noticia.source.name),
+          Container(
+            margin: EdgeInsets.symmetric( horizontal: 5.0),
+            child: Text('${index + 1}', style: TextStyle(color: miTema.colorScheme.secondary))),
+          Text(noticia.source.name, style: TextStyle( color: Colors.grey),),
         ],
       )
     );
@@ -71,30 +77,59 @@ class _TarjetaTopBar extends StatelessWidget {
 
 class _TarjetaTitulo extends StatelessWidget {
   
-  final Article noticias;
+  final Article noticia;
 
-  const _TarjetaTitulo( this.noticias); 
+  const _TarjetaTitulo( this.noticia); 
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric( horizontal: 15.0),
-      child: Text(noticias.title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400)),
+      child: Text(noticia.title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400), textAlign: TextAlign.justify),
     );
   }
 }
 
 class _TarjetaImagen extends StatelessWidget {
 
-  final Article noticias;
+  final Article noticia;
 
-  const _TarjetaImagen( this.noticias);
+  const _TarjetaImagen( this.noticia);
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Hola Mundo'),
+      margin: EdgeInsets.symmetric( vertical: 10.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(50.0)),
+        child: Container(
+          margin: EdgeInsets.all(10.0),
+          child: ( noticia.urlToImage != null)
+          ? FadeInImage(
+            placeholder: AssetImage('assets/img/giphy.gif'), 
+            image: NetworkImage( noticia.urlToImage ),
+            )
+          : Image( image: AssetImage('Assets/img/no-image.png'),
+          )  
+        ),
+      ),
+    );
+  }
+}
+
+
+class _TarjetaBody extends StatelessWidget {
+  
+  final Article noticia;
+
+  const _TarjetaBody(this.noticia);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric( horizontal: 5.0 ),
+      child: Text( (noticia.description != null) ? noticia.description : '', textAlign: TextAlign.justify),
     );
   }
 }
