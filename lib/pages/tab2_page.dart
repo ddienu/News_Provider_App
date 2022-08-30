@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_provider/model/category_model.dart';
 import 'package:news_app_provider/services/news_service.dart';
+import 'package:news_app_provider/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 
@@ -27,6 +28,7 @@ class _ListaCategorias extends StatelessWidget {
   Widget build(BuildContext context) {
 
      final categories = Provider.of<NewsService>(context).categories;
+     final newsService = Provider.of<NewsService>(context);
 
     return ListView.builder(
       physics: BouncingScrollPhysics(),
@@ -44,7 +46,12 @@ class _ListaCategorias extends StatelessWidget {
               children: [
                 _CategoryButton(categories[index]),
                 SizedBox( height: 5.0),
-                Text(categoryName[0].toUpperCase()+categoryName.substring(1))
+                Text(categoryName[0].toUpperCase()+categoryName.substring(1),
+                style: TextStyle(color: ( newsService.selectedCategory == categoryName)
+                     ? miTema.colorScheme.secondary
+                     : Colors.white
+                  )
+                )
                ],
               ),
             ),
@@ -63,8 +70,11 @@ class _CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final newsService = Provider.of<NewsService>(context);
+
     return GestureDetector(
-      onTap: () { //print(categoria.name),
+      onTap: () {
       final newsService = Provider.of<NewsService>(context, listen: false);
       newsService.selectedCategory = categoria.name;
       },
@@ -73,11 +83,13 @@ class _CategoryButton extends StatelessWidget {
         height: 40.0,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white,
+          color: ( newsService.selectedCategory == categoria.name)
+               ? miTema.colorScheme.secondary
+               : Colors.white
         ),
         child: Icon(
           categoria.icon,
-          color: Colors.black87,
+          color: Colors.black87
           ),
       ),
     );
