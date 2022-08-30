@@ -14,6 +14,8 @@ class NewsService with ChangeNotifier{
   List<Article> headlines = [];
   String _selectedCategory = 'general';
 
+  bool isLoading = true;
+  
   List<Category> categories = [
     Category(FontAwesomeIcons.building, 'business'),
     Category(FontAwesomeIcons.tv, 'entertainment'),
@@ -27,8 +29,6 @@ class NewsService with ChangeNotifier{
   Map<String, List<Article>> categoryArticles = {};
 
 
-        
-
   NewsService(){
 
     this.getHeadLines();
@@ -39,7 +39,6 @@ class NewsService with ChangeNotifier{
     });
   
   }
-
 
   String get selectedCategory => _selectedCategory;
 
@@ -52,6 +51,8 @@ class NewsService with ChangeNotifier{
     notifyListeners();
   }
 
+  List<Article>? get getArticulosCategoriaSeleccionada => categoryArticles[selectedCategory];
+
   getHeadLines() async {
 
     final url  = Uri.https(_authority, _unencodedPath, _queryParameters);
@@ -62,6 +63,8 @@ class NewsService with ChangeNotifier{
     headlines.addAll( newsResponse.articles );
     notifyListeners();
   }
+
+
   getArticlesByCategory( String category ) async {
 
     if ( categoryArticles[category]!.isNotEmpty){
